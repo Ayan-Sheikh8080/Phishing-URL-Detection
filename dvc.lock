@@ -1,0 +1,38 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python -m src.prepare
+    deps:
+    - path: data/raw/PhiUSIIL_Phishing_URL_Dataset.csv
+      hash: md5
+      md5: 769ba530b3629c4c2f9896abf642aefa
+      size: 56854345
+    - path: src/features.py
+      hash: md5
+      md5: 3f1864cc5eff7cddb636f090ae48dab0
+      size: 1857
+    - path: src/prepare.py
+      hash: md5
+      md5: ebde6b758c258312fa14eab2b8857ac0
+      size: 926
+    outs:
+    - path: data/processed/features.csv
+      hash: md5
+      md5: cdb713f058e4e2d7b42c0ea34b1b2211
+      size: 24943506
+  validate:
+    cmd: python -m src.validate
+    deps:
+    - path: data/processed/features.csv
+      hash: md5
+      md5: cdb713f058e4e2d7b42c0ea34b1b2211
+      size: 24943506
+    - path: src/validate.py
+      hash: md5
+      md5: 6eb3d9ef345717be36371cc7b5d4029d
+      size: 2046
+    outs:
+    - path: reports/validation.json
+      hash: md5
+      md5: 307e78a9e287c74c5fc0422fe006eddb
+      size: 159

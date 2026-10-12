@@ -1,0 +1,9 @@
+{
+  "rows": 235370,
+  "phishing_share": 0.4271,
+  "missing_values": 0,
+  "duplicate_urls": 0,
+  "invalid_labels": 0,
+  "passed": 1,
+  "num_errors": 0
+}

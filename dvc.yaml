@@ -1,0 +1,17 @@
+stages:
+  prepare:
+    cmd: python -m src.prepare
+    deps:
+    - data/raw/PhiUSIIL_Phishing_URL_Dataset.csv
+    - src/features.py
+    - src/prepare.py
+    outs:
+    - data/processed/features.csv
+  validate:
+    cmd: python -m src.validate
+    deps:
+    - data/processed/features.csv
+    - src/validate.py
+    metrics:
+    - reports/validation.json:
+        cache: false
