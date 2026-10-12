@@ -15,3 +15,14 @@ stages:
     metrics:
     - reports/validation.json:
         cache: false
+  train:
+    cmd: python -m src.train
+    deps:
+    - data/processed/features.csv
+    - src/features.py
+    - src/train.py
+    outs:
+    - models/model.pkl
+    metrics:
+    - reports/metrics.json:
+        cache: false

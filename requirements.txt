@@ -1,6 +1,8 @@
+aiobotocore==3.9.2
 aiohappyeyeballs==2.7.1
 aiohttp==3.14.5
 aiohttp-retry==2.9.1
+aioitertools==0.13.0
 aiosignal==1.4.0
 alembic==1.20.0
 amqp==5.4.1
@@ -14,6 +16,7 @@ atpublic==8.0.1
 attrs==26.1.0
 billiard==4.3.1
 blinker==1.9.0
+botocore==1.43.106
 cachetools==7.2.1
 celery==5.6.3
 certifi==2026.7.22
@@ -43,6 +46,7 @@ dvc-data==3.18.3
 dvc-http==2.32.0
 dvc-objects==5.2.0
 dvc-render==1.0.2
+dvc-s3==3.3.0
 dvc-studio-client==0.23.0
 dvc-task==0.40.2
 dynaconf==3.3.5
@@ -81,6 +85,7 @@ interface_meta==2.0.1
 iterative-telemetry==0.0.10
 itsdangerous==2.2.0
 Jinja2==3.1.6
+jmespath==1.1.0
 joblib==1.6.0
 kiwisolver==1.5.1
 kombu==5.6.2
@@ -95,7 +100,7 @@ mlflow==3.17.0
 mlflow-skinny==3.17.0
 mlflow-tracing==3.17.0
 msgspec==0.22.0
-multidict==7.1.0
+multidict==6.9.1
 multipart==2.0.1
 mypy_extensions==1.1.0
 narwhals==2.27.1
@@ -144,6 +149,7 @@ requests==2.34.2
 rich==15.0.0
 rich-click==1.9.9
 ruamel.yaml==0.19.1
+s3fs==2026.9.0
 scikit-learn==1.9.1
 scipy==1.18.1
 scmrepo==3.6.2
