@@ -1,0 +1,12 @@
+venv/
+.git/
+.dvc/
+data/
+mlruns/
+mlflow.db
+logs/
+reports/
+tests/
+__pycache__/
+*.pyc
+.env
