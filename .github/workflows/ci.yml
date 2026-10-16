@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-api.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements-api.txt pytest httpx "dvc[s3]"
+
+      - name: Pull data and model from S3 (DVC)
+        run: dvc pull
+
+      - name: Validate data
+        run: python -m src.validate
+
+      - name: Run tests
+        run: python -m pytest tests -q
+
+      - name: Build Docker image
+        run: docker build -t phishing-api .
+
+      - name: Smoke test the container
+        run: |
+          docker run -d --name api -p 8000:8000 phishing-api
+          for i in $(seq 1 20); do
+            curl -sf http://localhost:8000/health && break || sleep 3
+          done
+          curl -sf -X POST http://localhost:8000/predict \
+            -H "Content-Type: application/json" \
+            -d '{"url": "http://192.168.1.5/secure/login-verify"}'
+          docker logs api
